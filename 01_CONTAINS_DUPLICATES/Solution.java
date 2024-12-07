@@ -6,6 +6,18 @@ public class Solution {
 
     
 
+    public boolean hasDuplicate(int[] nums){
+        HashSet<Integer> seen = new HashSet<>();
+        
+        for (int num: nums){
+            if (seen.contains(num)){
+                return true;
+            }
+            seen.add(num);
+        }
+        return false;
+    }
+
     // public boolean soluction01(int[] nums) {
     //     for (int i = 0; i < nums.length; i++) {
     //         for (int j = i + 1; j < nums.length; j++) {

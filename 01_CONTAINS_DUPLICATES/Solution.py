@@ -1,7 +1,13 @@
 from typing import List
 
 class Soluction:
-    pass
+   
+   def hasDuplicate(self, nums:List[int]) -> bool:
+        for i in range(len(nums)):
+            if nums[i] in nums[i+1:]:
+                return True 
+            return False
+
 
     # def soluction_01(self, nums:List[int]) -> bool:
     #     for i in range(len(nums)):
