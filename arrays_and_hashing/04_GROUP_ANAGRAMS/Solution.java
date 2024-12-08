@@ -77,7 +77,7 @@ public class Solution {
         res = slt.hashTables(strs);
         
         // MY SOLUTION
-        res = slt.groupAnagrams(strs)
+        res = slt.groupAnagrams(strs);
 
         System.out.println(res);
 

@@ -24,7 +24,7 @@ class Solution:
             # in the key and the word in the value of the dict
             res[tuple(count)].append(s)
         # return the list with the values of the dicttionary
-        return list(res.values())
+        return List(res.values())
 
 
 
