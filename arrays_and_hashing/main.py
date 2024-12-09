@@ -54,7 +54,40 @@ class Main:
         return List(res.values())
 
     def top_k_frequent(self, nums:List[int], k:int) -> List[int]:
-        pass
+        count = {}
+        freq = [[] for _ in range(len(nums) + 1)]
+
+        for num in nums:
+            count[num] = 1 +count.get(num, 0)
+        for num, cnt in count.items():
+            freq[cnt].append(num)
+        res = []
+        for i in range(len(freq) - 1,0, -1):
+            for num in freq[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res
+
+
+    def encode(self, strs:List[str]) -> str:
+        res = ""
+        for s in strs:
+            res += str(len(s)) + "#" + s 
+        return res 
+    
+    def decode(self, s:str) -> List[str]:
+        res = []
+        i = 0
+        while i < len(s):
+            j = i 
+            while s[j] != '#':
+                j += 1
+            length = int(s[i:j])
+            i = j + 1
+            j = i + length 
+            res.append(s[i:j])
+            i = j 
+        return res
     ############################################## 
 
 
@@ -118,6 +151,17 @@ class Main:
             You may return the output in any order
         """
         pass
+
+    def encode_decode(self):
+        """
+            Design an algorithm to encode a list of strings to a single string.
+            The encoded string is then decoded back to the original list of strings
+        """
+        def encode():
+            pass 
+
+        def decode():
+            pass
     ## 
 
 

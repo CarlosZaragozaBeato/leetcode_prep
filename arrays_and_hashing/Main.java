@@ -69,8 +69,58 @@ public class Main {
     }
 
     public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> count = new HashMap<>();
+        List<Integer>[] freq = new List[nums.length + 1];
 
+        for (int i = 0; i<freq.length; i++){
+            freq[i] = new ArrayList<>();
+        }
+        for (int n: nums){
+            count.put(n, count.getOrDefault(n, 0) + 1);
+        }
+        for (Map.Entry<Integer, Integer> entry: count.entrySet()){
+            freq[entry.getValue()].add(entry.getKey());
+        }
+        int[] res = new int[k];
+        int index = 0;
+        for (int i = freq.length - 1; i>0 && index < k; i --){
+            for(int n: freq[i]){
+                res[index++] = n;
+                if (index == k){
+                    return res;
+                }
+            }
+        }
+        return res;
     }
+
+    public String encode(List<String> strs){
+        StringBuilder res = new StringBuilder();
+        for (String s: strs){
+            res.append(s.length()).append('#').append(s);
+        }
+        return res.toString();
+    }
+
+    public List<String> decode(String str){
+        List<String> res = new ArrayList<>();
+        int i = 0;
+        while(i < str.length()){
+            int j = i;
+            while (str.charAt(j) != '#'){
+                j++;
+            }
+            int length = Integer.parseInt(str.substring(i, j));
+            i = j + 1;
+            j = i + length;
+            res.add(str.substring(i, j));
+            i = j;
+        } 
+        return res;
+    }
+
+
+
 
     ////////////////////////////
     public Main(int option) {
@@ -140,6 +190,17 @@ public class Main {
          * You may return the output in any order.
          */
     }
+
+
+    /*
+     * Design an algorithm to encode a list of strigns to a single string.
+     * The encoded string is then decoded back to the original list of string
+     */
+    public String encode(List<String> strs){
+
+    }
+
+    public List<String> decode(String str){
     //
 
     public static void main(String[] args) {
