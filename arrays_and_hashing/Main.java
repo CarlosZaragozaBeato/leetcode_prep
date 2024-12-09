@@ -119,7 +119,8 @@ public class Main {
         return res;
     }
 
-
+    public int[] productExceptSelf(int[] nums) {
+    }
 
 
     ////////////////////////////
@@ -196,12 +197,22 @@ public class Main {
      * Design an algorithm to encode a list of strigns to a single string.
      * The encoded string is then decoded back to the original list of string
      */
-    public String encode(List<String> strs){
+    public String solEncode(List<String> strs){
+
+    }
+    public List<String> solDecode(String str){
+    }
+    public int[] productExceptSelf(int[] nums) {
+        /**
+        *  Given an integer array nums, return an array output where output[i] 
+        *   is the product of all the elements of nums except nums[i].
+        *   Each product is guaranteed to fit in a 32-bit integer.
+        *   Follow-up: Could you solve it in  O(n) time without using the division operation?
+        **/
 
     }
 
-    public List<String> decode(String str){
-    //
+        //
 
     public static void main(String[] args) {
 
