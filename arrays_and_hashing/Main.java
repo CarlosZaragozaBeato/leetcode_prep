@@ -93,7 +93,6 @@ public class Main {
         }
         return res;
     }
-<<<<<<< HEAD
 
     public String encode(List<String> strs){
         StringBuilder res = new StringBuilder();
@@ -123,8 +122,6 @@ public class Main {
 
 
 
-=======
->>>>>>> cc0cb5f4ab6846afc978f11d63623560147f4990
     ////////////////////////////
     public Main(int option) {
         this.option = option;

@@ -67,7 +67,6 @@ class Main:
                 res.append(num)
                 if len(res) == k:
                     return res
-<<<<<<< HEAD
 
 
     def encode(self, strs:List[str]) -> str:
@@ -89,8 +88,6 @@ class Main:
             res.append(s[i:j])
             i = j 
         return res
-=======
->>>>>>> cc0cb5f4ab6846afc978f11d63623560147f4990
     ############################################## 
 
 
