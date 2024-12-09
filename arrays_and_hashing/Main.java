@@ -93,6 +93,7 @@ public class Main {
         }
         return res;
     }
+<<<<<<< HEAD
 
     public String encode(List<String> strs){
         StringBuilder res = new StringBuilder();
@@ -122,6 +123,8 @@ public class Main {
 
 
 
+=======
+>>>>>>> cc0cb5f4ab6846afc978f11d63623560147f4990
     ////////////////////////////
     public Main(int option) {
         this.option = option;
@@ -180,7 +183,7 @@ public class Main {
          */
     }
 
-    public int[] solTopKFrequent(int[] nums, int k) {
+    public void solTopKFrequent(int[] nums, int k) {
         /*
          * Given an integer array nums and an integer k, return the k most frequent
          * elements within the array.
