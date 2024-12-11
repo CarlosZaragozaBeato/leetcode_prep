@@ -102,6 +102,39 @@ class Main:
             res[i] *= postfix
             postfix *= nums[i]
         return res
+    
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        cols = DefaultDict(set)
+        rows = DefaultDict(set)
+        squares = DefaultDict(set)
+
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == '.':
+                    continue
+                if (board[r][c] in rows[r]
+                    or board[r][c] in cols[c]
+                    or board[r][c] in squares [r // 3, c // 3]):
+                    return False
+                
+                cols[c].add(board[r][c])
+                rows[r].add(board[r][c])
+                squares[(r // 3, c // 3)].add(board[r][c])
+        return True
+
+
+
+    def longestConsecutive(self, nums: List[int]) -> int:
+        numSet = set(nums)
+        longest= 0 
+        
+        for num in numSet:
+            if (num - 1) not in numSet:
+                length = 1
+                while (num + length) in numSet:
+                    length += 1 
+                longest = max(length, longest)
+        return longest
     ############################################## 
 
 
@@ -185,6 +218,32 @@ class Main:
             Each product is guaranteed to fit in a 32-bit integer.
 
             Follow up: Could you solve it in 0(n)  time without using the division operation
+        """
+
+    def sol_is_valid_sudoku(self, board:List[List[str]]) -> bool:
+        """
+            You area given a 9x9 Sudoku board. A Sudoku board is valid if the following
+            rules are followed
+
+            1. Each row must contain the digits 1 - 9 without duplicates. 
+            2. Each column must contain the digitts  1 - 9 without duplicates
+            3. Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 
+                1 - 9 without duplicates.
+            
+            Return true if the Sudoku board is valid, otherwise return false
+
+            Note: A board does not need to be full or be solvable to be valid.
+        """
+    def sol_longest_consecutive(self, nums:int) -> int:
+        """
+            Given an array of integers nums, return the length of the longest 
+            consecutive sequence of elements that can be formed
+
+            A consecutive sequence is a sequence of elements in which each 
+            element is exactly 1 greater that the previous element. The element
+            do not have to be consecutive in the original array
+
+            You must write an algorithm that runs on 0(n) time 
         """
     ## 
 

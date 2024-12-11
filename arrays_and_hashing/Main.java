@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Main {
     private int option;
@@ -72,21 +73,21 @@ public class Main {
         Map<Integer, Integer> count = new HashMap<>();
         List<Integer>[] freq = new List[nums.length + 1];
 
-        for (int i = 0; i<freq.length; i++){
+        for (int i = 0; i < freq.length; i++) {
             freq[i] = new ArrayList<>();
         }
-        for (int n: nums){
+        for (int n : nums) {
             count.put(n, count.getOrDefault(n, 0) + 1);
         }
-        for (Map.Entry<Integer, Integer> entry: count.entrySet()){
+        for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
             freq[entry.getValue()].add(entry.getKey());
         }
         int[] res = new int[k];
         int index = 0;
-        for (int i = freq.length - 1; i>0 && index < k; i --){
-            for(int n: freq[i]){
+        for (int i = freq.length - 1; i > 0 && index < k; i--) {
+            for (int n : freq[i]) {
                 res[index++] = n;
-                if (index == k){
+                if (index == k) {
                     return res;
                 }
             }
@@ -94,20 +95,20 @@ public class Main {
         return res;
     }
 
-    public String encode(List<String> strs){
+    public String encode(List<String> strs) {
         StringBuilder res = new StringBuilder();
-        for (String s: strs){
+        for (String s : strs) {
             res.append(s.length()).append('#').append(s);
         }
         return res.toString();
     }
 
-    public List<String> decode(String str){
+    public List<String> decode(String str) {
         List<String> res = new ArrayList<>();
         int i = 0;
-        while(i < str.length()){
+        while (i < str.length()) {
             int j = i;
-            while (str.charAt(j) != '#'){
+            while (str.charAt(j) != '#') {
                 j++;
             }
             int length = Integer.parseInt(str.substring(i, j));
@@ -115,13 +116,69 @@ public class Main {
             j = i + length;
             res.add(str.substring(i, j));
             i = j;
-        } 
+        }
         return res;
     }
 
     public int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+        int[] res = new int[n];
+
+        res[0] = 1;
+        for (int i = 1; i < n; i++) {
+            res[i] = res[i - 1] * nums[i - 1];
+        }
+        int postfix = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            res[i] *= postfix;
+            postfix *= nums[i];
+        }
+        return res;
     }
 
+    public boolean isValidSudoku(char[][] board) {
+        Map<Integer, Set<Character>> cols = new HashMap<>();
+        Map<Integer, Set<Character>> rows = new HashMap<>();
+        Map<String, Set<Character>> squares = new HashMap<>();
+
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
+                if (board[r][c] == '.')
+                    continue;
+
+                String squareKey = (r / 3) + "," + (c / 3);
+
+                if (rows.computeIfAbsent(r, k -> new HashSet<>()).contains(board[r][c]) ||
+                        cols.computeIfAbsent(c, k -> new HashSet<>()).contains(board[r][c]) ||
+                        squares.computeIfAbsent(squareKey, k -> new HashSet<>()).contains(board[r][c])) {
+                    return false;
+                }
+                rows.get(r).add(board[r][c]);
+                cols.get(c).add(board[r][c]);
+                squares.get(squareKey).add(board[r][c]);
+            }
+        }
+        return true;
+    }
+
+    public int longestConsecutive(int[] nums) {
+        Set<Integer> numSet = new HashSet<>();
+        for (int num : nums) {
+            numSet.add(num);
+        }
+        int longest = 0;
+
+        for (int num : numSet) {
+            if (!numSet.contains(num - 1)) {
+                int length = 1;
+                while (numSet.contains(num + length)) {
+                    length++;
+                }
+                longest = Math.max(longest, length);
+            }
+        }
+        return longest;
+    }
 
     ////////////////////////////
     public Main(int option) {
@@ -192,27 +249,54 @@ public class Main {
          */
     }
 
-
     /*
      * Design an algorithm to encode a list of strigns to a single string.
      * The encoded string is then decoded back to the original list of string
      */
-    public String solEncode(List<String> strs){
+    public String solEncode(List<String> strs) {
 
     }
-    public List<String> solDecode(String str){
+
+    public List<String> solDecode(String str) {
     }
+
     public int[] productExceptSelf(int[] nums) {
         /**
-        *  Given an integer array nums, return an array output where output[i] 
-        *   is the product of all the elements of nums except nums[i].
-        *   Each product is guaranteed to fit in a 32-bit integer.
-        *   Follow-up: Could you solve it in  O(n) time without using the division operation?
-        **/
+         * Given an integer array nums, return an array output where output[i]
+         * is the product of all the elements of nums except nums[i].
+         * Each product is guaranteed to fit in a 32-bit integer.
+         * Follow-up: Could you solve it in O(n) time without using the division
+         * operation?
+         **/
 
     }
 
-        //
+    public boolean solIsValidSudoku(char[][] board) {
+        // You area given a 9x9 Sudoku board. A Sudoku board is valid if the following
+        // rules are followed
+
+        // 1. Each row must contain the digits 1 - 9 without duplicates.
+        // 2. Each column must contain the digitts 1 - 9 without duplicates
+        // 3. Each of the nine 3 x 3 sub-boxes of the grid must contain the digits
+        // 1 - 9 without duplicates.
+
+        // Return true if the Sudoku board is valid, otherwise return false
+
+        // Note: A board does not need to be full or be solvable to be valid.
+    }
+
+    public int solLongestConsecutive(int[] nums) {
+        // Given an array of integers nums, return the length of the longest
+        // consecutive sequence of elements that can be formed
+
+        // A consecutive sequence is a sequence of elements in which each
+        // element is exactly 1 greater that the previous element. The element
+        // do not have to be consecutive in the original array
+
+        // You must write an algorithm that runs on 0(n) time
+    }
+
+    //
 
     public static void main(String[] args) {
 
