@@ -145,15 +145,17 @@ class Main:
 
 
 
-
     # Solution
-    def sol_contain_duplicates(self):
+    def sol_contain_duplicates(self, nums:List[int]) -> List[int]:
         """ 
             Given an integer array nums, retturn true if any value appears more that once
             in the array, otherwise return false
         """
-        pass
-
+        for index, num in enumerate(nums):
+            if num in nums[index+1:]:
+                return True
+        return False
+        
     def sol_valid_anagram(self):
         """
             Given two strings s and t, return true if the two strings are anagrams of each

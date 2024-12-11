@@ -198,11 +198,19 @@ public class Main {
     }
 
     // solutions
-    public void solContainsDuplicates() {
+    public boolean solContainsDuplicates(int[] nums) {
         /*
          * Given an integer array nums, return true if any value appears more thatn once
          * in the array, otherwise return false /
          */
+        Set<Integer> nums_seen = HashSet<>();
+        for (int i =0; i < nums.length; i++){
+            if (nums_seen.contains(nums[i])){
+                return true;
+            }
+            nums_seen.add(nums[i]);
+        }
+        return false;
     }
 
     public void solValidAnagram() {
