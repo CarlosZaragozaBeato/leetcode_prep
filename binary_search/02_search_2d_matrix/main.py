@@ -1,4 +1,4 @@
-from typing
+from typing import List
 
 def bruteForce(matrix: List[List[int]], target: int) -> bool:
     for r in range(len(matrix)):
